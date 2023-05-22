@@ -21,6 +21,7 @@
       >
         {{ index }} - {{ obj.title }}
       </div>
+      Gustavo
     </div>
 </template>
 

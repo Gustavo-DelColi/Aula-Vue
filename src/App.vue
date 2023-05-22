@@ -21,7 +21,7 @@
       >
         {{ index }} - {{ obj.title }}
       </div>
-      Gustavo
+      Gustavo - GUSTAVO DE NOVO
     </div>
 </template>
 

@@ -1,40 +1,32 @@
 <template>
   <div>
-    {{ fullName }} <br>
-    <h2>Todos em aberto</h2>
-    <div
-      v-for="todo in uncompletedTodos"
-      :key="todo.id"
-    >
-    {{ todo.title }} 
-    </div>
-
-
-
-    <h2>Todos completas</h2>
-    <div
-      v-for="todo in completedTodos"
-      :key="todo.id"
-    >
-    {{ todo.title }}
-    </div>
-
-
-    <br><br><br>
-
-    <h2>Todos</h2>
-    <div
-      v-for="todo in todos"
-      :key="todo.id"
-    >
-    
-      <input 
-        v-model="todo.completed"
-        type="checkbox"
-      >
+    <input
+      v-model="name"
+      type="text"
+    > <br>
+      {{ name }}
       
-      {{ todo.title }}
-    </div>
+      <br><br>
+
+      <input
+        v-model="user.first_name"
+        type="text"
+    > <br>
+
+      <input
+        v-model="user.last_name"
+        type="text"
+    > <br>
+
+      {{ user.first_name }} {{ user.last_name }}
+
+      <br><br><br>
+      <select v-model="pageCount">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+      </select><br>
+      {{ pageCount }}
 
   </div>
 </template>
@@ -44,62 +36,43 @@ export default {
   name: 'App',
   data() {
     return {
-      user: {
-        firts_name: 'Jon',
-        last_name: 'Snow',
-      },
-      todos:
-      [
-        {
-          "userId": 1,
-          "id": 1,
-          "title": "delectus aut autem",
-          "completed": true
-        },
-        {
-          "userId": 1,
-          "id": 2,
-          "title": "quis ut nam facilis et officia qui",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 3,
-          "title": "fugiat veniam minus",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 4,
-          "title": "et porro tempora",
-          "completed": true
-        },
-        {
-          "userId": 1,
-          "id": 5,
-          "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-          "completed": false
-        }
-      ]
-
+      name: '',
+      pageCount: 5,
+      user:{
+        first_name:'',
+        last_name:'',
+      }
     }
-
   },
 
-  computed: {
-    fullName() {
-      return `${this.user.firts_name} ${this.user.last_name}`
+  watch: {
+    name(vl){
+      if(vl.length >= 3)  {
+        this.saveUserName()
+      }
     },
-    uncompletedTodos(){
-      return this.todos.filter(todo => !todo.completed);
-    },
-    completedTodos(){
-      return this.todos.filter(todo => todo.completed)
-    },
+      pageCount(){
+        this.changePage();
+      },
+      user:{
+        handler() {
+          console.log('User alterado');
+        },
+        deep: true
+      }
   },
-
+  
+  computed:{
+  },
+  
   methods: {
-
+    saveUserName(){
+      console.log('Ajax');
+      console.log(this.name);
+    },
+    changePage(){
+      console.log('Ajax changePage');
+    }
   }
 }
 

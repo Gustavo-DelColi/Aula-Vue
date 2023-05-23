@@ -10,17 +10,17 @@
         Olhar de lado , contrário de secar ,que é encarar
       </p>
       
-      <img
-        src="https://fakeimg.pl/600x400?text=fasdasd"
-        v-bind:alt="imgAlt"
-      >
       <div
         v-for="(obj, index) in todos"
         v-bind:key="obj.id"
         class="todos-item"
-      >
+        >
+        <img
+          v-if="obj.imgSrc"
+          :src="obj.imgSrc"
+        >
         {{ index }} - {{ obj.title }}
-      </div>
+        </div>
     </div>
 </template>
 
@@ -31,7 +31,6 @@ export default {
     return {
       isHome: false,
       classVar: 'title',
-      imgAlt: 'Foto de Jon Snow',
       pClass: ['text', 'text-home'],
       styleClass: {'color': 'aqua','backgroundColor': 'red'},
       todos:[
@@ -39,13 +38,16 @@ export default {
               "userId": 1,
               "id": 1,
               "title": "delectus aut autem",
-              "completed": false
+              "completed": false,
+              "imgSrc":'https://fakeimg.pl/150?text=fasdasd',
+              "imgAlt": 'Foto de Jon Snow',
             },
             {
               "userId": 1,
               "id": 2,
               "title": "quis ut nam facilis et officia qui",
-              "completed": false
+              "completed": false,
+              "imgSrc":'https://fakeimg.pl/150?text=fasdasd',
             },
             {
               "userId": 1,

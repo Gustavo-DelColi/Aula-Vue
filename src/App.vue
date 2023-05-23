@@ -1,75 +1,29 @@
 <template>
   <div>
-    <div>
-      One-way data binding<br>
-      Two-way data binding<br>
-      v-model -> formulários
+    <button @click.once="onClick">
+      Enviar
+    </button>
+    <br>
+    <div 
+      @mouseover="onMouseOver"
+      @mouseout="onMouseOut"
+    >
+      Mouse Over
     </div>
     <br><br>
-    <div>
-      <label>Nome</label><br>
+    <form 
+      action="https://www.pneustyres.com.br/"
+      @submit.prevent="onSubmit"
+    >
       <input
-        v-model="name"
         type="text"
-        > <br>
-        {{ name }}
-    </div>
-    <br><br>
-    <div>
-      <label>Sports</label><br>
-      <select v-model="sports">
-        <option value="">Escolha</option>
-        <option value="futebol">Futebol</option>
-        <option value="skate">skate</option>
-        <option value="tenis">tenis</option>
-      </select><br>
-      {{ sports }}
-    </div>
-    <br><br>
-    <div>
-      <label> Newsletter</label><br>
-      <input
-        v-model="newsletter"
-        type="radio"
-        value="Sim"
-      > Sim
-
-      <input
-        v-model="newsletter"
-        type="radio"
-        value="Não"
-      > Não <br>
-      {{ newsletter }}
-
-    </div>
-    <br><br>
-    <div>
-      <label> Contrato</label><br>
-      <input
-        v-model="contract"
-        type="checkbox"
-        value="Sim"
-      > Aceita os termos <br>
-
-      {{ contract }}
-
-    </div>
-    <div>
-      <label> Colors </label><br>
-      <input
-        v-model="colors"
-        type="checkbox"
-        value="Blue"
-      > Blue
-
-      <input
-        v-model="colors"
-        type="checkbox"
-        value="Red"
-      > Red <br>
-      {{ colors }}
-
-    </div>
+        @keyup.enter="onKeyUp"
+      >
+      <button type="submit">
+        Enviar
+      </button>
+  
+    </form>
   </div>
 </template>
 
@@ -78,13 +32,27 @@ export default {
   name: 'App',
   data() {
     return {
-      name:'Jon Snow',
-      sports:'',
-      newsletter:'',
-      contract: false,
-      colors:[]
+     
     }
 
+  },
+
+  methods:{
+    onClick($evt){
+      console.log('click', $evt);
+    },
+    onMouseOver($evt){
+      console.log('mouse over', $evt);
+    },
+    onMouseOut($evt){
+      console.log('mouse out', $evt);
+    },
+    onSubmit($evt){
+      console.log('submit', $evt);
+    },
+    onKeyUp($evt){
+      console.log('submit', $evt);
+    }
   }
 }
 

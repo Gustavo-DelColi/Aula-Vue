@@ -1,79 +1,83 @@
 <template>
   <div>
-    <input
-      v-model="name"
-      type="text"
-    > <br>
-      {{ name }}
-      
-      <br><br>
-
-      <input
-        v-model="user.first_name"
-        type="text"
-    > <br>
-
-      <input
-        v-model="user.last_name"
-        type="text"
-    > <br>
-
-      {{ user.first_name }} {{ user.last_name }}
-
-      <br><br><br>
-      <select v-model="pageCount">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-      </select><br>
-      {{ pageCount }}
-
+    <TheHeader v-if="showHeader"/>
+    <h1>Hello World</h1>
+    {{ name }} <br>
+    <button @click="showHeader = !showHeader">
+      Ativar e desativar
+    </button>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App',
-  data() {
-    return {
-      name: '',
-      pageCount: 5,
-      user:{
-        first_name:'',
-        last_name:'',
-      }
-    }
-  },
+import TheHeader from './components/TheHeader.vue';
 
-  watch: {
-    name(vl){
-      if(vl.length >= 3)  {
-        this.saveUserName()
+export default {
+    name: "App",
+    components: { TheHeader },
+    data() {
+      return {
+        name: "Han Solo",
+        showHeader: true,
+        };
+    },
+    // Criacao
+    // Preparar o componente
+    // Ajax, inicializar algumas variáveis
+    // Não tem acesso ao template (DOM)
+    // Montagem
+    // Inicializar um lib externa
+    // Precisa de acesso ao template (DOM)
+    // Tem acesso ao template (DOM)
+    // Atualizacao
+    // Debug
+    // Update
+    // Desmontagem
+    // Remover tudo que for necessario (lib->destroy()) para Liberar memória
+    // HOOKS 
+    beforeUpdate() {
+        console.log("beforeUpdate", this.name);
+    },
+    updated() {
+        console.log("updated", this.name);
+    },
+    beforeCreate() {
+        console.log("beforeCreate");
+        console.log("Estado:", this.name);
+        console.log("DOM:", this.$el);
+    },
+    created() {
+        console.log("created");
+        console.log("Estado:", this.name);
+        console.log("DOM:", this.$el);
+    },
+    beforeMount() {
+        console.log("beforeMount");
+        console.log("Estado:", this.name);
+        console.log("DOM:", this.$el);
+    },
+    mounted() {
+        console.log("mounted");
+        console.log("Estado:", this.name);
+        console.log("DOM:", this.$el);
+    },
+    beforeUnmount() {
+        console.log("beforeUnmount");
+        console.log("Estado:", this.name);
+        console.log("DOM:", this.$el);
+    },
+    unmounted() {
+        console.log("unmounted");
+        console.log("Estado:", this.name);
+        console.log("DOM:", this.$el);
+    },
+    watch: {},
+    computed: {},
+    methods: {
+      toggleHeader(){
+        this.showHeader = !this.showHeader
       }
     },
-      pageCount(){
-        this.changePage();
-      },
-      user:{
-        handler() {
-          console.log('User alterado');
-        },
-        deep: true
-      }
-  },
-  
-  computed:{
-  },
-  
-  methods: {
-    saveUserName(){
-      console.log('Ajax');
-      console.log(this.name);
-    },
-    changePage(){
-      console.log('Ajax changePage');
-    }
-  }
 }
 
 </script>

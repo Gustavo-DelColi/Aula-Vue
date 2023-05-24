@@ -1,22 +1,17 @@
 <template>
-  <div>
-    <TheHeader>
-
-      <template v-slot:description>
-        <p>Biruleibe</p>
-      </template>
-      Content do header - menu ...
-    </TheHeader>
+  <div class="card">
+      Teste
+    <BaseCard />
   </div>
 </template>
 
 
 <script>
-import TheHeader from './components/TheHeader.vue';
+import BaseCard from '@/components/BaseCard.vue';
 
 export default {
     name: "App",
-    components: { TheHeader },
+    components: { BaseCard },
     data() {
       return {        
         };

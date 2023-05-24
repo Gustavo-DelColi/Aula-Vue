@@ -1,7 +1,12 @@
 <template>
   <div>
+    <COMPONENTE>
+      
+    </COMPONENTE>
     <BaseAlert
+      v-if="showAlert"
       :variant="variant"
+      @close="onClose()"
       >
       {{ text }}
       </BaseAlert>
@@ -17,7 +22,8 @@ export default {
     components: { BaseAlert },
     data() {
       return {  
-        variant: '',      
+        showAlert: true,
+        variant: 'success',      
         text: 'Seu formulário foi enviado com sucesso!'      
         }
     },
@@ -54,12 +60,12 @@ export default {
     watch: {},
     computed: {},
     methods: {
-      toggleHeader(){
-        this.showHeader = !this.showHeader
+      onClose(){
+        this.showAlert=false
+          console.log('on close');
       }
-    },
-}
-
+    }
+  }
 </script>
 
 <style>
